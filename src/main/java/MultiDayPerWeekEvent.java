@@ -1,5 +1,6 @@
 import java.util.GregorianCalendar;
 
+import calendar.Meeting;
 import calendar.MeetingCalendar;
 
 
@@ -20,7 +21,28 @@ public class MultiDayPerWeekEvent extends CalendarEvent
 	@Override
 	public void scheduleEvent(MeetingCalendar cal)
 	{
+		GregorianCalendar myStart = (GregorianCalendar) this.getStartTime().clone();
+		GregorianCalendar myEnd = (GregorianCalendar) this.getEndTime().clone();
+	
+		myStart.clear(myStart.DAY_OF_MONTH);
+		myEnd.clear(myEnd.DAY_OF_MONTH);
 		
+		while (myStart.before(this.getRepeatUntil())) 
+		{
+			for (int i = 0; i < this.getDays().length && myStart.before(this.getRepeatUntil()); i++)
+			{
+				myStart.set(myStart.DAY_OF_WEEK, this.getDays()[i]);
+				myEnd.set(myEnd.DAY_OF_WEEK, this.getDays()[i]);
+				myStart.getTime();
+				myEnd.getTime();
+				
+				Meeting m = new Meeting(this.getDescription(), this.getLocation(), myStart, myEnd);
+				cal.addMeeting(m);	
+			}
+			
+			myStart.add(myStart.WEEK_OF_MONTH, 1);
+			myEnd.add(myEnd.WEEK_OF_MONTH, 1);
+		}
 	}
 
 	public GregorianCalendar getRepeatUntil()

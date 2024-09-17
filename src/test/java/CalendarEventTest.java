@@ -56,7 +56,7 @@ class CalendarEventTest
 		startE = new GregorianCalendar(2024,9,29,8,30);
 		startF = new GregorianCalendar(2024,9,30,8,30);
 		int[] daysA = {Calendar.MONDAY, Calendar.TUESDAY, Calendar.WEDNESDAY, Calendar.THURSDAY, Calendar.FRIDAY};
-		int[] daysB = {Calendar.SATURDAY, Calendar.SUNDAY};
+		int[] daysB = {Calendar.SUNDAY, Calendar.SATURDAY};
 		
 		oneEventA = new OneTimeEvent("Meeting", "Olin", startA, endA);
 		oneEventA2 = new OneTimeEvent("Lunch", "Olin", startA, endA);
