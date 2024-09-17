@@ -1,7 +1,6 @@
 import java.util.GregorianCalendar;
 import calendar.MeetingCalendar;
 
-// stub
 public abstract class CalendarEvent 
 {
 	private String Description;
@@ -11,11 +10,14 @@ public abstract class CalendarEvent
 	
 	public CalendarEvent(String desc, String loc, GregorianCalendar start, GregorianCalendar end)
 	{	
+		this.Description = desc;
+		this.location = loc;
+		this.startTime = start;
+		this.endtime = end;
 	}
 	
 	public abstract void scheduleEvent(MeetingCalendar cal);
 	
-	// getters and setters
 	public String getDescription()
 	{
 		return Description;

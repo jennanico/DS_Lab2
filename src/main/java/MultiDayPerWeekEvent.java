@@ -8,18 +8,19 @@ public class MultiDayPerWeekEvent extends CalendarEvent
 {
 	
 	private GregorianCalendar repeatUntil;
-	private int[] days;
+	private int[] Days;
 	
 	public MultiDayPerWeekEvent(String desc, String loc, GregorianCalendar start, GregorianCalendar end, GregorianCalendar repeat, int days[])
 	{
 		super(desc, loc, start, end);
 		this.repeatUntil = repeat;
+		this.Days = days;
 	}
 
 	@Override
 	public void scheduleEvent(MeetingCalendar cal)
 	{
-
+		
 	}
 
 	public GregorianCalendar getRepeatUntil()
@@ -34,12 +35,12 @@ public class MultiDayPerWeekEvent extends CalendarEvent
 
 	public int[] getDays()
 	{
-		return days;
+		return Days;
 	}
 
 	public void setDays(int[] days)
 	{
-		this.days = days;
+		this.Days = days;
 	}
 	
 	
