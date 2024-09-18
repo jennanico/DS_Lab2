@@ -26,8 +26,8 @@ public class WeeklyEvent extends CalendarEvent
 			Meeting m = new Meeting(this.getDescription(), this.getLocation(), myStart, myEnd);
 			cal.addMeeting(m);
 			
-			myStart.add(myStart.WEEK_OF_MONTH, 1);
-			myEnd.add(myEnd.WEEK_OF_MONTH, 1);
+			myStart.add(myStart.DAY_OF_MONTH, 7);
+			myEnd.add(myEnd.DAY_OF_MONTH, 7);
 		}
 	}
 

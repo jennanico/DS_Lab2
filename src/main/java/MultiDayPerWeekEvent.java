@@ -24,24 +24,23 @@ public class MultiDayPerWeekEvent extends CalendarEvent
 		GregorianCalendar myStart = (GregorianCalendar) this.getStartTime().clone();
 		GregorianCalendar myEnd = (GregorianCalendar) this.getEndTime().clone();
 	
-		myStart.clear(myStart.DAY_OF_MONTH);
-		myEnd.clear(myEnd.DAY_OF_MONTH);
-		
+
 		while (myStart.before(this.getRepeatUntil())) 
 		{
-			for (int i = 0; i < this.getDays().length && myStart.before(this.getRepeatUntil()); i++)
+			for (int i = 0; i < 7 && myStart.before(this.getRepeatUntil()); i++)
 			{
-				myStart.set(myStart.DAY_OF_WEEK, this.getDays()[i]);
-				myEnd.set(myEnd.DAY_OF_WEEK, this.getDays()[i]);
-				myStart.getTime();
-				myEnd.getTime();
+				for (int j = 0; j < this.getDays().length && myStart.before(this.getRepeatUntil()); j++)
+				{
+					if (myStart.get(myStart.DAY_OF_WEEK) == this.getDays()[j])
+					{
+						Meeting m = new Meeting(this.getDescription(), this.getLocation(), myStart, myEnd);
+						cal.addMeeting(m);
+					}
+				}	
 				
-				Meeting m = new Meeting(this.getDescription(), this.getLocation(), myStart, myEnd);
-				cal.addMeeting(m);	
+				myStart.add(myStart.DAY_OF_MONTH, 1);
+				myEnd.add(myEnd.DAY_OF_MONTH, 1);
 			}
-			
-			myStart.add(myStart.WEEK_OF_MONTH, 1);
-			myEnd.add(myEnd.WEEK_OF_MONTH, 1);
 		}
 	}
 
